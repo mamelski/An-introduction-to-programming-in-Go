@@ -29,4 +29,11 @@ func main() {
 	copy(slice2, slice1)
 	fmt.Println(slice2)
 
+	slice3 := make([]int, 3, 9)
+	fmt.Println(cap(slice3))
+	fmt.Println(len(slice3))
+
+	x2 := [6]string{"a", "b", "c", "d", "e", "f"}
+	fmt.Println(x2[2:5])
+
 }
