@@ -24,6 +24,15 @@ func variadicFunction(args ...float64) float64 {
 	return total
 }
 
+func makeEvenGenerator() func() uint {
+	i := uint(0)
+	return func() (ret uint) {
+		ret = i
+		i += 2
+		return
+	}
+}
+
 func main() {
 	xs := []float64{98, 93, 77, 82, 83}
 
@@ -31,4 +40,26 @@ func main() {
 	fmt.Println(multipleReturnValues())
 
 	fmt.Println(variadicFunction(xs...))
+
+	printer := func(number int) {
+		fmt.Println("Printer", number)
+	}
+
+	x := 0
+	increment := func() (result int) {
+		x++
+		return x
+	}
+
+	printer(increment())
+	printer(increment())
+	printer(increment())
+
+	printer(1)
+	printer(2)
+
+	nextEven := makeEvenGenerator()
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
 }
