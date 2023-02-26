@@ -17,5 +17,4 @@ func main() {
 
 	zeroPtr(&x)
 	fmt.Println(x)
-
 }
