@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	c1 := make(chan string)
-	c2 := make(chan string)
+	c1 := make(chan string, 2)
+	c2 := make(chan string, 5)
 
 	go func() {
 		for {
@@ -31,6 +31,10 @@ func main() {
 
 			case msg2 := <-c2:
 				fmt.Println(msg2)
+
+			case <-time.After(time.Second * 1):
+				fmt.Println("timeout")
+				return
 			}
 		}
 	}()
