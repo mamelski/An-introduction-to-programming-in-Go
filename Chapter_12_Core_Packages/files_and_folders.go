@@ -52,7 +52,28 @@ func CreateFile() {
 	file.WriteString("I created this")
 }
 
+func ReadDirectories() {
+	dirr, err := os.Open(".")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer dirr.Close()
+
+	fileInfos, err := dirr.ReadDir(-1)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	for _, fi := range fileInfos {
+		fmt.Println(fi.Name())
+	}
+
+}
+
 func main() {
 	CreateFile()
 	ReadFile2()
+	ReadDirectories()
 }
