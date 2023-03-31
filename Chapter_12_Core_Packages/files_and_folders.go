@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 func ReadFile1() {
@@ -52,6 +53,14 @@ func CreateFile() {
 	file.WriteString("I created this")
 }
 
+func Walk() {
+
+	filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+		fmt.Println(path)
+		return nil
+	})
+}
+
 func ReadDirectories() {
 	dirr, err := os.Open(".")
 	if err != nil {
@@ -73,7 +82,9 @@ func ReadDirectories() {
 }
 
 func main() {
-	CreateFile()
-	ReadFile2()
-	ReadDirectories()
+	//CreateFile()
+	//ReadFile2()
+	//ReadDirectories()
+
+	Walk()
 }
